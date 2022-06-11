@@ -22,6 +22,7 @@ alias ll='ls -la'
 alias tree='exa -T'
 alias dotfiles="git --git-dir $HOME/.dotfiles/ --work-tree $HOME"
 alias ssha='eval $(ssh-agent) && ssh-add ~/.ssh/id_ed25519_graphenX'
+alias rdsrv='rdesktop 192.168.0.100 -u Administrator -p "$1" -k es 2>/dev/null &; disown'
 
 function mkt(){
   mkdir {nmap,scripts,exploits,content}

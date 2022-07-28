@@ -34,8 +34,23 @@ function SET_IP_ADDR() {
     )
 
   Set-NetIPInterface -InterfaceIndex $if -Dhcp Disabled
-  New-NetIPAddress -InterfaceIndex $if -IPAddress $ip -PrefixLength $mk -DefaultGateway $gw
-  Set-DnsClientServerAddress -InterfaceIndex $if -ServerAddresses ("192.168.10.1","8.8.8.8")
+  New-NetIPAddress -InterfaceIndex $if -IPAddress $ip -PrefixLength $msk -DefaultGateway $gw 
+  Set-DnsClientServerAddress -InterfaceIndex $if -ServerAddresses ("192.168.10.1","8.8.8.8") # sustituye IP DC por nombre diferente a dc (dc-local) y ponlo en archivo hosts para no exponer IP en el commit
+}
+
+function DEL_IP_ADDR() {
+  Param(
+        [parameter(Mandatory=$true)]
+        [String]
+        $ip,
+
+        [parameter(Mandatory=$true)]
+        [String]
+        $gw
+    )
+
+  Remove-NetIPAddress -IPAddress $ip
+  Remove-NetRoute -NextHop $gw
 }
 function ADD_IP_ADDR() {
   Param(
@@ -52,5 +67,5 @@ function ADD_IP_ADDR() {
         $msk
     )
 
-  New-NetIPAddress -InterfaceIndex $if -IPAddress $ip -PrefixLength $mk
+  New-NetIPAddress -InterfaceIndex $if -IPAddress $ip -PrefixLength $msk
 }

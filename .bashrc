@@ -21,7 +21,7 @@ alias ls='exa --group-directories-first'
 alias ll='ls -la'
 alias tree='exa -T'
 alias dotfiles="git --git-dir $HOME/.dotfiles/ --work-tree $HOME"
-alias ssha='eval $(ssh-agent) && ssh-add ~/.ssh/id_ed25519_graphenX'
+alias ssha='eval $(ssh-agent) && ssh-add ~/.ssh/graphenX/id_ed25519_graphenX'
 alias rdsrv='rdesktop 192.168.0.100 -u Administrator -p "$1" -k es 2>/dev/null &'
 
 function mkt(){
@@ -43,6 +43,8 @@ function extractPorts(){
 . ~/.git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[33m\]$(__git_ps1 "(%s)")\[\033[37m\]\$\[\033[00m\] '
+export GIT_IaC=https://github.com/graphenX/IaC.git
+export SSH_KEY_PATH=~/.ssh/docker-sshkeys/ed25519_docker
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

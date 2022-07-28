@@ -1,0 +1,9 @@
+[user]
+	name = graphenX
+	email = graphenX@tutanota.com
+
+[init]
+	defaultBranch = main
+
+[alias]
+	tree = log --graph --oneline --decorate --all
